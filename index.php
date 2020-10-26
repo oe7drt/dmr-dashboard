@@ -52,10 +52,6 @@
           IPSC2-OE-MASTER</a>
         | <a href="http://srv08.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
           IPSC2-OE-MLINK</a>
-        | <a href="https://oe7drt.com" style="color: #ffffff;" target="_blank">
-          My personal website</a>
-        | <a href="https://github.com/oe7drt/dmr-dashboard" style="color: #ffffff;" target="_blank">
-          Github Repository</a>
       </p>
       <div style="font-size: 8px; text-align: left; padding-left: 8px; ">
       </div>
@@ -96,9 +92,15 @@
 ?>
 </div>
 <div class="footer">
-  This dashboard has been put together by
-  <a href="https://oe7drt.com/" style="color: #ffffff;">Dominic, OE7DRT</a>.
-  It looks like Pi-Star. Just in case you did not notice ;-)
+    <div style="font-size: 1.2em; text-align: right; padding-right: 8px;">
+      <a href="https://oe7drt.com" style="color: #ffffff;"
+        target="_blank">OE7DRT Website</a>
+      &middot; <a href="https://github.com/oe7drt/dmr-dashboard" style="color: #ffffff;"
+        target="_blank">This dashboard on github.com</a>
+    </div>
+    This dashboard has been put together by
+    <a href="https://oe7drt.com/" style="color: #ffffff;">Dominic, OE7DRT</a>.
+    It looks like Pi-Star. Just in case you did not notice ;-)
 </div>
 </body>
 </html>
