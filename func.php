@@ -3,9 +3,8 @@
 /* 
  * func.php
  * Dashboard for YSFGateway
- * Manually compiled and configured MMDVMHost with YSFGateway
- * master branch (no DG-ID)
- * connecting to YCS232 with multiple DG-ID support
+ * Manually compiled and configured MMDVMHost without DMRGateway
+ * connecting to IPSC2-OE-DMO Server 89.185.97.34 (srv05.oevsv.at)
  *
  */
 
@@ -73,6 +72,7 @@ function rssiCalc( $val ) {
   else if( $val > -129 ) $rssi = "S3";
   else if( $val > -135 ) $rssi = "S2";
   else if( $val > -141 ) $rssi = "S1";
+
   return "$rssi ($val dBm)";
 }
 
@@ -97,8 +97,6 @@ function printTable( $time, $callsign, $slot, $tg, $duration, $loss = "---", $be
 
 function getLastHeard($limit = MAXENTRIES) {
   $logPath = LOGPATH."/".MMDVM_PREFIX."-*.log";
-  //$logLines =  explode( "\n", `egrep -h "network (data|watchdog)|RF end of transmission" $logPath | tail -$limit` );
-  //$logLines =  explode( "\n", `egrep -h "YSF" $logPath | tail -$limit` );
   $logLines =  explode( "\n", `egrep -h "DMR Slot" $logPath` );
 
   $oldline = "";
@@ -148,24 +146,14 @@ function getLastHeard($limit = MAXENTRIES) {
 		  $tg = substr(
         $line,
         strpos( $line, "to " ) + 3,
-        strpos( $line, ",", strpos( $line, "to " ) + 3 ) - strpos( $line, "to " ) - 3);
-      
-      // $tmppos = strpos( $line, "seconds," );
-      // $tmppos = 0 - $tmppos;
-      // $tmpanfang = strpos( $line, ",", $tmppos );
+        strpos( $line, ",", strpos( $line, "to " ) + 3 ) - strpos( $line, "to " ) - 3
+      );
       
       $duration = substr(
         $line,
         strpos( $line, "to " ) + strlen( $tg ) + 5,
         strpos( $line, " seconds," ) - strpos( $line, "to " ) - strlen( $tg ) - 5
       );
-      //echo "<pre><code>$tg</code></pre>";
-		  //$new_time = strtotime( date( "Y-m-d H:i:s", strtotime( substr( $oldline, 3, 23 )." UTC" )));
-		  // echo "<pre><code>\$callsign: $callsign at \$dgid: $dgid\n\$old_time: ".date("Y-m-d H:i:s", $old_time ).
-		  // "\n\$new_time: ".date("Y-m-d H:i:s", $new_time )."</code></pre>\n";
-		  // $duration = intval(( $new_time - $old_time )) . ".0";
-      //$duration = intval(( $new_time - $old_time ));
-		  //$repeater = substr( $oldline, strpos( $oldline, "at " ) + 3, strpos( $oldline, " ", strpos( $oldline, "at " ) + 3) - strpos( $oldline, "at " ) + 3 );
 		  $loss = substr(
         $line,
         strpos( $line, "seconds, " ) + 9,
@@ -174,7 +162,11 @@ function getLastHeard($limit = MAXENTRIES) {
       /*if( $loss == "0%" ) {
         $loss = "-x-";
       }*/
-		  $ber = substr( $line, strpos( $line, "BER: " ) + 5, strpos( $line, "%", strpos( $line, "BER: ")) - strpos( $line, "BER: " ));
+		  $ber = substr(
+        $line,
+        strpos( $line, "BER: " ) + 5,
+        strpos( $line, "%", strpos( $line, "BER: ")) - strpos( $line, "BER: " )
+      );
       //if( $ber == "0.0%" ) $ber = "-x-";
   	} else {
   		continue;
@@ -190,7 +182,6 @@ function getLastHeard($limit = MAXENTRIES) {
   $tmp['slot'] = $slot;
 	$tmp['tg'] = $tg;
 	$tmp['duration'] = round( $duration, 0, PHP_ROUND_HALF_UP );
-	//$tmp['repeater'] = $repeater;
 	$tmp['loss'] = $loss;
 	$tmp['ber'] = $ber;
 	array_unshift( $printLines, $tmp );
