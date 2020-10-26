@@ -54,6 +54,8 @@
           IPSC2-OE-MLINK</a>
         | <a href="https://oe7drt.com" style="color: #ffffff;" target="_blank">
           My personal website</a>
+        | <a href="https://github.com/oe7drt/dmr-dashboard" style="color: #ffffff;" target="_blank">
+          Github Repository</a>
       </p>
       <div style="font-size: 8px; text-align: left; padding-left: 8px; ">
       </div>
