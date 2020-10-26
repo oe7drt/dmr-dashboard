@@ -40,7 +40,7 @@ function getUptime() {
 
 function linkCallsign( $callsign ) {
   $tmp = explode( "-", $callsign );
-  $call = $tmp[0];
+  $call = trim( $tmp[0] );
   $suffix = ( !empty( $tmp[1] ))
     ? "-$tmp[1]"
     : "";
@@ -50,8 +50,10 @@ function linkCallsign( $callsign ) {
   }
   if( !is_numeric( $call )) {
     $call = "<a href=\"https://qrz.com/db/$call\" target=\"_blank\">$call" . "</a>$suffix";
-  } elseif( strlen( $call ) == 7 ) {
+  } elseif( strlen( $call ) === 7 ) {
     $call = "<a href=\"https://ham-digital.org/dmr-userreg.php?usrid=$call\"" . " target=\"_blank\">$call</a>";
+  } elseif( strlen( $call ) === 4 ) {
+    //$call = "Reflector $call";
   }
 
   return $call;
@@ -143,7 +145,10 @@ function getLastHeard($limit = MAXENTRIES) {
       $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 23 )." UTC" ));
 		  $callsign = substr( $line, 87, strpos( $line, "to ") - 87 );
       $slot = substr( $line, 36, strpos( $line, ",") - 36);
-		  $tg = substr( $line, 97, strpos( $line, ",", 96 ) - 97);
+		  $tg = substr(
+        $line,
+        strpos( $line, "to " ) + 3,
+        strpos( $line, ",", strpos( $line, "to " ) + 3 ) - strpos( $line, "to " ) - 3);
       
       // $tmppos = strpos( $line, "seconds," );
       // $tmppos = 0 - $tmppos;

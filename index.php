@@ -76,11 +76,11 @@
   <table align="center">
     <tr>
       <th>Time (<?php echo date("T"); ?>)</th>
-      <th>Callsign</th>
+      <th>Station</th>
       <th>Slot</th>
       <th>Talkgroup</th>
       <!-- <th>Source/Repeater</th> -->
-      <th>Dur(s)</th>
+      <th>Duration</th>
       <th>Loss</th>
       <th>BER</th>
     </tr>
