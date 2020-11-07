@@ -23,7 +23,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <div style="font-size: 0.9em; text-align: left; padding-left: 8px; float: left;">
+      <div style="font-size: 0.9em; text-align: left; padding-left: 8px; float: left; max-width: 65%">
         Hostname: <?php echo trim(`hostname`); ?> (<?php echo trim(`hostname -I | cut -d' ' -f1`); ?>)<br />
         <?php
           $iniFile  = MMDVM_INI;
