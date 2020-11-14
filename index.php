@@ -27,7 +27,7 @@
         Hostname: <?php echo trim(`hostname`); ?> (<?php echo trim(`hostname -I | cut -d' ' -f1`); ?>)<br />
         <?php
           $iniFile  = MMDVM_INI;
-          $logline  = `egrep -h "Options=" $iniFile | tail -n 1`;
+          $logline  = `egrep -h "Options=\"" $iniFile | tail -n 1`;
           //$options  = substr($logline, strpos($logline, "Options="));
           $optionsLine = explode( "\"", $logline );
           $options = explode( ";", $optionsLine[1] );

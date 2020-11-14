@@ -140,9 +140,9 @@ function getLastHeard($limit = MAXENTRIES) {
   		}
   	}
     if( strpos( $line, "received network end of voice" )) {
-      $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 23 )." UTC" ));
-		  $callsign = substr( $line, 87, strpos( $line, "to ") - 87 );
-      $slot = substr( $line, 36, strpos( $line, ",") - 36);
+      $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 20 )." UTC" ));
+		  $callsign = substr( $line, 83, strpos( $line, "to ") - 83 );
+      $slot = substr( $line, 32, strpos( $line, ",") - 32);
 		  $tg = substr(
         $line,
         strpos( $line, "to " ) + 3,
