@@ -27,15 +27,31 @@
         Hostname: <?php echo trim(`hostname`); ?> (<?php echo trim(`hostname -I | cut -d' ' -f1`); ?>)<br />
         <?php
           $iniFile  = MMDVM_INI;
-          $logline  = `egrep -h "Options=\"" $iniFile | tail -n 1`;
-          //$options  = substr($logline, strpos($logline, "Options="));
-          $optionsLine = explode( "\"", $logline );
-          $options = explode( ";", $optionsLine[1] );
+          $logline  = `egrep -h "^Options=\"" $iniFile | tail -n 1`;
 
-          echo "DMR Options: ";
+          if( !empty( $logline )) {
+            //$options  = substr($logline, strpos($logline, "Options="));
+            $optionsLine = explode( "\"", $logline );
+            $options = explode( ";", $optionsLine[1] );
+            echo "DMR Options: ";
+            foreach( $options as $option ) {
+              echo "$option ";
+            }
+          } else {
+            $logline = `grep "DMR Network" $iniFile -A 10 | egrep "^Address"`;
+            $addressLine = explode( "=", $logline );
 
-          foreach( $options as $option ) {
-            echo "$option ";
+            $logline = `grep "DMR Network" $iniFile -A 10 | egrep "^Port"`;
+            $portLine = explode( "=", $logline );
+
+            if( defined( "DNS" )) {
+              $address = strstr( `nslookup $addressLine[1]`, "=" );
+              $dns = substr( $address, 2, strrpos( $address, "." ) - 2);
+
+              echo "BM Master: $dns:" . trim( $portLine[1] );
+            } else {
+              echo "BM Master: " . trim( $addressLine[1] ) . ":" . trim( $portLine[1] );
+            }
           }
         ?>
       </div>
