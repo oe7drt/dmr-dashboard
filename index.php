@@ -10,6 +10,11 @@
   $time_start = microtime(true);
   include("conf.php");
   include("func.php");
+  
+  // Load callsigns into memory
+  // This happens one time and it makes every site request/refresh approx. 1 second
+  // longer
+  $mem = ImportDB();
 
 ?><html>
 <head>

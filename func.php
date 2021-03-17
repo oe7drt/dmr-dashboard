@@ -37,6 +37,46 @@ function getUptime() {
   return $out;
 }
 
+function ImportDB() {
+
+  $contents = array();
+  
+  if( $file = fopen( DMRID_DAT, 'r' )) {
+
+    while( !feof( $file )) {
+      $line = fgetss( $file, 64 );
+      $elem = explode( ";", $line );
+      array_push( $contents, $elem );
+    }
+    fclose( $file );
+  }
+  
+  return $contents;
+}
+
+function CallsignLookupDB( $id ) {
+  // $call = "<a href=\"https://www.radioid.net/database/view?id=$call\"" . " target=\"_blank\">$call</a>";
+
+  global $mem;
+
+  if( !empty( $mem )) {
+
+    foreach( $mem as $key => $val ) {
+      if( $val[0] === $id ) {
+        $call = $mem[$key];
+        $callsign = $call[1];
+      }
+    }
+
+    $call_code = "<a href=\"https://qrz.com/db/$callsign\"" . " target=\"_blank\">$callsign</a>";
+  } else {
+    $call_code = "<a href=\"https://www.radioid.net/database/view?id=$id\"" . " target=\"_blank\">$id</a>";
+  }
+
+
+  return $call_code;
+}
+
 function linkCallsign( $callsign ) {
   $tmp = explode( "-", $callsign );
   $call = trim( $tmp[0] );
@@ -47,11 +87,16 @@ function linkCallsign( $callsign ) {
   if( !empty( $suffix )) {
     $suffix="-$suffix";
   }
+
   if( !is_numeric( $call )) {
     $call = "<a href=\"https://qrz.com/db/$call\" target=\"_blank\">$call" . "</a>$suffix";
-  } elseif( strlen( $call ) === 7 ) {
-    $call = "<a href=\"https://ham-digital.org/dmr-userreg.php?usrid=$call\"" . " target=\"_blank\">$call</a>";
-  } elseif( strlen( $call ) === 4 ) {
+  } elseif( strlen( $call ) == 7 ) {
+    // old version linked to ham-digital which now is fusioned into radioid.net
+    //$call = "<a href=\"https://ham-digital.org/dmr-userreg.php?usrid=$call\"" . " target=\"_blank\">$call</a>";
+    $call = CallsignLookupDB( $call );
+  } elseif( strlen( $call ) == 6 ) {
+    $call = "<a href=\"https://www.radioid.net/map?locator=$call\"" . " target=\"_blank\">$call</a>";
+  } elseif( strlen( $call ) == 4 ) {
     //$call = "Reflector $call";
   }
 

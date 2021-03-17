@@ -34,4 +34,6 @@
   define("MMDVM_PREFIX", "DMRHost");
   define("YSFGW_PREFIX", "YSFGateway");
   define("APRSGW_PREFIX","APRSGateway");
+
+  define("DMRID_DAT", "dmrid.dat");
 ?>

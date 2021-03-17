@@ -20,6 +20,9 @@ line.
 
 Copy all files into your webroot and modify `config.php` to your needs.
 
+If you want to see Callsigns instead of DMR-IDs then place a file `dmrids.dat` in your
+webroot. You can rename `dmrids.dat.bak` for this but it may not be up to date!
+
 ### Licenses
 
 Some code (Stylesheet) was taken from Pi-Star by Andy Taylor.
