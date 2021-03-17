@@ -16,6 +16,13 @@ and I do not have high standards to meet - I just want a simple dashboard that I
 also look at from my phone. Otherwise I would rather look into the logs on the command
 line.
 
+### Warning
+
+This tool was made for MMDVMHost and the last push to this repository was made on November 2020.
+Since then I have not tested it (with never versions of MMDVMHost for example).
+
+**I am planning of using this only with [DMRHost](https://github.com/BrandMeister/DMRHost)**!
+
 ### Installation
 
 Copy all files into your webroot and modify `config.php` to your needs.
