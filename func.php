@@ -66,14 +66,15 @@ function CallsignLookupDB( $id ) {
       if( $val[0] === $id ) {
         $call = $mem[$key];
         $callsign = $call[1];
+        
+        $call_code = "<a href=\"https://qrz.com/db/$callsign\"" . " target=\"_blank\">$callsign</a>";
+        
+        return $call_code;
       }
     }
-
-    $call_code = "<a href=\"https://qrz.com/db/$callsign\"" . " target=\"_blank\">$callsign</a>";
-  } else {
-    $call_code = "<a href=\"https://www.radioid.net/database/view?id=$id\"" . " target=\"_blank\">$id</a>";
   }
 
+  $call_code = "<a href=\"https://www.radioid.net/database/view?id=$id\"" . " target=\"_blank\">$id</a>";
 
   return $call_code;
 }
