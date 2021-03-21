@@ -42,11 +42,12 @@ function ImportDB() {
   $contents = array();
   
   if( $file = fopen( DMRID_DAT, 'r' )) {
-
-    while( !feof( $file )) {
-      $line = fgetss( $file, 64 );
-      $elem = explode( ";", $line );
-      array_push( $contents, $elem );
+    if( !defined("NONAMES")) {
+      while( !feof( $file )) {
+        $line = fgetss( $file, 64 );
+        $elem = explode( ";", $line );
+        array_push( $contents, $elem );
+      }
     }
     fclose( $file );
   }
@@ -121,7 +122,7 @@ function rssiCalc( $val ) {
   return "$rssi ($val dBm)";
 }
 
-function printTable( $time, $callsign, $slot, $tg, $duration, $loss = "---", $ber = "---" ) {
+function printTable( $id=0, $time, $callsign, $slot, $tg, $duration, $loss = "---", $ber = "---" ) {
   if( $duration >= 60 ) {
     $min = str_pad( intval( $duration / 60 ), 2, "0", STR_PAD_LEFT );
     $sec = str_pad( $duration % 60, 2, "0", STR_PAD_LEFT );
@@ -130,6 +131,7 @@ function printTable( $time, $callsign, $slot, $tg, $duration, $loss = "---", $be
     $duration = "00:" . str_pad( $duration, 2, "0", STR_PAD_LEFT );
   }
   echo "  <tr>\n" .
+    "<td>$id</td>\n" .
     "<td>$time</td>\n" .
     "<td>" . linkCallsign( $callsign ) ."</td>\n" .
     "<td>$slot</td>\n" .
@@ -240,6 +242,7 @@ function getLastHeard($limit = MAXENTRIES) {
   
   foreach( $printLines as $key=>$line ) {
     printTable(
+      $c + 1,
       $line['time'],
       $line['callsign'],
       $line['slot'],

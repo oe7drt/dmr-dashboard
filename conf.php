@@ -12,12 +12,16 @@
   	define("DEBUG", true);
   }
 
+  if (isset($_GET['nonames'])) {
+    define("NONAMES", true);
+  }
+
   if (isset($_GET['dns'])) {
     define("DNS", true);
   }
 
   if (isset($_GET['full'])) {
-  	define("MAXENTRIES", 1000);
+  	define("MAXENTRIES", 500);
     define("MAXLOGENTRIES", MAXENTRIES * 5);
   } else {
     define("MAXENTRIES", 20);
