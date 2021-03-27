@@ -105,6 +105,24 @@ function linkCallsign( $callsign ) {
   return $call;
 }
 
+function rssiCalcImg( $val ) {
+  if( $val > -53 ) $rssi       = "<img title=\"S9 +40dB\" alt=\"S9 +40dB\" src=\"img/4.png\">";
+  else if( $val > -63 ) $rssi  = "<img title=\"S9 +30dB\" alt=\"S9 +30dB\" src=\"img/4.png\">";
+  else if( $val > -73 ) $rssi  = "<img title=\"S9 +20dB\" alt=\"S9 +20dB\" src=\"img/4.png\">";
+  else if( $val > -83 ) $rssi  = "<img title=\"S9 +10dB\" alt=\"S9 +10dB\" src=\"img/4.png\">";
+  else if( $val > -93 ) $rssi  = "<img title=\"S9\" alt=\"S9\" src=\"img/4.png\">";
+  else if( $val > -99 ) $rssi  = "<img title=\"S8\" alt=\"S8\" src=\"img/3.png\">";
+  else if( $val > -105 ) $rssi = "<img title=\"S7\" alt=\"S7\" src=\"img/3.png\">";
+  else if( $val > -111 ) $rssi = "<img title=\"S6\" alt=\"S6\" src=\"img/2.png\">";
+  else if( $val > -117 ) $rssi = "<img title=\"S5\" alt=\"S5\" src=\"img/2.png\">";
+  else if( $val > -123 ) $rssi = "<img title=\"S4\" alt=\"S4\" src=\"img/1.png\">";
+  else if( $val > -129 ) $rssi = "<img title=\"S3\" alt=\"S3\" src=\"img/1.png\">";
+  else if( $val > -135 ) $rssi = "<img title=\"S2\" alt=\"S2\" src=\"img/0.png\">";
+  else if( $val > -141 ) $rssi = "<img title=\"S1\" alt=\"S1\" src=\"img/0.png\">";
+
+  return "$rssi";
+}
+
 function rssiCalc( $val ) {
   if( $val > -53 ) $rssi = "S9+40dB";
   else if( $val > -63 ) $rssi = "S9+30dB";
@@ -165,32 +183,30 @@ function getLastHeard($limit = MAXENTRIES) {
       continue;
     }
 
-  	if( strpos( $line, "RF end of transmission" )) {
-        $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 23 )." UTC" ));
-        $callsign = substr( $line, 69, strpos( $line, "to" ) - 69 );
-        $tg = substr( $line, 89, strpos( $line, ",", 89 ) - 89 );
-        $duration = round( trim( substr( $line, 92, strpos( $line, "seconds,", 92 ) - 92 ), " ," ));
-        $rssi_values = explode( "/", substr( $line, 113, strpos( $line, "dBm", 113 ) - 113 ));
-        $rssi = rssiCalc( round( array_sum( $rssi_values ) / count( $rssi_values )));
-        $loss = "---";
-        $ber = substr( $line, 111, strpos( $line, ",", 111 ) - 111 );
+  	if( strpos( $line, "RF end of voice transmission" )) {
+        $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 24 )." UTC" ));
+        $callsign = substr( $line, 82, strpos( $line, "to" ) - 82 );
+        $slot = substr( $line, 36, strpos( $line, ",") -36);
+        $tg = substr( $line, 93, strpos( $line, ",", 93 ) - 93 );
+        $duration = round( trim( substr( $line, 103, strpos( $line, "seconds,", 103 ) - 103 ), " ," ));
+        $rssi_values = explode( "/", substr( $line, 133, strpos( $line, "dBm", 133 ) - 133 ));
+        $loss = rssiCalcImg( round( array_sum( $rssi_values ) / count( $rssi_values )));
+        $ber = substr( $line, 120, strpos( $line, ",", 120 ) - 120 );
         if( empty( $ber )) $ber = "---";
-        $repeater = $rssi; // use this testwise, debug
   	} elseif( strpos( $line, "received network voice header" )) {
   		if( strpos( $oldline, "received network voice header" )) {
         $oldline = $line;
   			continue;
   		} else {
-        $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 23 )." UTC" ));
+        $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 24 )." UTC" ));
   			$old_time = strtotime( $time );
         $oldline=$line;
         continue;
   		}
-  	}
-    if( strpos( $line, "received network end of voice" )) {
-      $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 20 )." UTC" ));
-		  $callsign = substr( $line, 83, strpos( $line, "to ") - 83 );
-      $slot = substr( $line, 32, strpos( $line, ",") - 32);
+  	} elseif( strpos( $line, "received network end of voice" )) {
+      $time = date( "Y-m-d H:i:s", strtotime( substr( $line, 3, 24 )." UTC" ));
+		  $callsign = substr( $line, 87, strpos( $line, "to ") - 87 );
+      $slot = substr( $line, 36, strpos( $line, ",") - 36);
 		  $tg = substr(
         $line,
         strpos( $line, "to " ) + 3,
@@ -216,6 +232,7 @@ function getLastHeard($limit = MAXENTRIES) {
         strpos( $line, "%", strpos( $line, "BER: ")) - strpos( $line, "BER: " )
       );
       //if( $ber == "0.0%" ) $ber = "-x-";
+      $rssi = "";
   	} else {
   		continue;
   	}

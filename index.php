@@ -94,15 +94,14 @@
       </table>
   <table align="center">
     <tr>
-      <th>No.</th>
-      <th>Time (<?php echo date("T"); ?>)</th>
-      <th>Station</th>
-      <th>Slot</th>
-      <th>Talkgroup</th>
-      <!-- <th>Source/Repeater</th> -->
-      <th>Duration</th>
-      <th>Loss</th>
-      <th>BER</th>
+      <th title="Entry #">No.</th>
+      <th title="Time">Time (<?php echo date("T"); ?>)</th>
+      <th title="Calling station">Station</th>
+      <th title="Timeslot">Slot</th>
+      <th title="Talkgroup (may sometimes be a private call)">Talkgroup</th>
+      <th title="Transmit duration">Duration</th>
+      <th title="Losses (may be RSSI value on RF input)">Loss</th>
+      <th title="Bit error rate">BER</th>
     </tr>
 <?php
   getLastHeard();
