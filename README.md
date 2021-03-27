@@ -21,7 +21,7 @@ line.
 This tool was made for MMDVMHost and the last push to this repository was made on November 2020.
 Since then I have not tested it (with never versions of MMDVMHost for example).
 
-**I am planning of using this only with [DMRHost](https://github.com/BrandMeister/DMRHost)**!
+**I am planning of using this only with [DMRHost](https://github.com/oe7drt/dmr-dashboard/tree/DMRHost)**!
 
 ### Installation
 
