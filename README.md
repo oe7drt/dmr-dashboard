@@ -21,7 +21,9 @@ line.
 Copy all files into your webroot and modify `config.php` to your needs.
 
 If you want to see Callsigns instead of DMR-IDs then place a file `dmrids.dat` in your
-webroot. You can rename `dmrids.dat.bak` for this but it may not be up to date!
+webroot. Run `update-db.sh` in this folder to get an actual `dmrid.dat` file.
+
+You may also want to create an automated job for this (cron).
 
 ### Licenses
 
