@@ -49,6 +49,10 @@
             $logline = `grep "DMR Network" $iniFile -A 10 | egrep "^Port"`;
             $portLine = explode( "=", $logline );
 
+            $logline = `egrep "^\[DMR]$" $iniFile -A 30 | egrep "^Id="`;
+            $idLine = explode( "=", $logline );
+            $rpt_id = $idLine[1];
+
             if( defined( "DNS" )) {
               $address = strstr( `nslookup $addressLine[1]`, "=" );
               $dns = substr( $address, 2, strrpos( $address, "." ) - 2);
@@ -67,6 +71,7 @@
       <a href="/" style="color: #ffffff;"><h1>Dashboard for DMR Hotspot OE7DRT</h1></a>
       <p style="padding-right: 5px; text-align: right; color: #ffffff;">
         <a href="/" style="color: #ffffff;">Dashboard</a>
+        | <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;">BM: Hotspot</a>
         | <a href="http://srv05.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
           IPSC2-OE-DMO</a>
         | <a href="http://srv07.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
