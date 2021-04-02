@@ -32,7 +32,7 @@
 #
 ###############################################################################
 
-DMRIDFILE=dmrid.dat
+DMRIDFILE=/home/pi/dmrid.dat
 BACKUPS=1
 
 if [ ${BACKUPS} -ne 0 ]
