@@ -105,6 +105,18 @@ function linkCallsign( $callsign ) {
   return $call;
 }
 
+function linkTG( $tg ) {
+  if( !is_numeric( $tg ) && !defined("NOTGLINK")) {
+    $tmp = explode( " ", $tg );
+    $tg_id = trim( $tmp[1] );
+    $tg_new = "<a href=\"https://brandmeister.network/?page=lh&DestinationID=$tg_id\" target=\"_blank\">$tg</a>";
+
+    return $tg_new;
+  }
+
+  return $tg;
+}
+
 function rssiCalcImg( $val ) {
   if( $val > -53 ) $rssi       = "<img title=\"S9 +40dB\" alt=\"S9 +40dB\" src=\"img/4.png\">";
   else if( $val > -63 ) $rssi  = "<img title=\"S9 +30dB\" alt=\"S9 +30dB\" src=\"img/4.png\">";
@@ -154,7 +166,7 @@ function printTable( $id=0, $time, $callsign, $slot, $tg, $duration, $loss = "--
     "<td>$time</td>\n" .
     "<td>" . linkCallsign( $callsign ) ."</td>\n" .
     "<td>$slot</td>\n" .
-    "<td>$tg</td>\n" .
+    "<td>" . linkTG( $tg ) . "</td>\n" .
     "<td>$duration</td>\n" .
     "<td>$loss</td>\n" .
     "<td>$ber</td>\n" .

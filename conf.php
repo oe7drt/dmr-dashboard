@@ -16,6 +16,10 @@
     define("NONAMES", true);
   }
 
+  if (isset($_GET['notglink'])) {
+    define("NOTGLINK", true);
+  }
+
   if (isset($_GET['dns'])) {
     define("DNS", true);
   }
