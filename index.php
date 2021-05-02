@@ -21,7 +21,7 @@
   <meta name=viewport content="width=device-width,initial-scale=1">
   <meta name=generator content="Sublime Text 3 / Vim">
   <meta name="author" content="Dominic Reich">
-  <title>OE7DRT DMR Hotspot Dashboard</title>
+  <title>DMR Hotspot Dashboard</title>
   <link rel="stylesheet" type="text/css" media="screen" href="dash.min.css" />
   <meta http-equiv="refresh" content="60">
 </head>
@@ -68,10 +68,10 @@
         echo date("d.m.Y H:i:s T") . "<br />\n";
         echo "Uptime: " . getUptime();
       ?></div>
-      <a href="/" style="color: #ffffff;"><h1>Dashboard for DMR Hotspot OE7DRT</h1></a>
+      <a href="/" style="color: #ffffff;"><h1>DMR Hotspot Dashboard for OE7DRT</h1></a>
       <p style="padding-right: 5px; text-align: right; color: #ffffff;">
         <a href="/" style="color: #ffffff;">Dashboard</a>
-        | <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;">BM: Hotspot</a>
+        | <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;" target="_blank">BM: Hotspot</a>
         | <a href="http://srv05.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
           IPSC2-OE-DMO</a>
         | <a href="http://srv07.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
