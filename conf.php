@@ -44,4 +44,7 @@
   define("APRSGW_PREFIX","APRSGateway");
 
   define("DMRID_DAT", "/home/pi/dmrid.dat");
+
+  // if we use IPSC2, if we use brandmeister just comment this line out
+  define("IPSC", true);
 ?>

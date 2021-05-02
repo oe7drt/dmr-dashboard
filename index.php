@@ -28,7 +28,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <div style="font-size: 0.9em; text-align: left; padding-left: 8px; float: left; max-width: 65%">
+      <div style="font-size: 0.9em; text-align: left; padding-left: 8px; float: left; max-width: 50%">
         Hostname: <?php echo trim(`hostname`); ?> (<?php echo trim(`hostname -I | cut -d' ' -f1`); ?>)<br />
         <?php
           $iniFile  = MMDVM_INI;
@@ -71,13 +71,13 @@
       <a href="/" style="color: #ffffff;"><h1>DMR Hotspot Dashboard for OE7DRT</h1></a>
       <p style="padding-right: 5px; text-align: right; color: #ffffff;">
         <a href="/" style="color: #ffffff;">Dashboard</a>
-        | <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;" target="_blank">BM: Hotspot</a>
+        <?php if( !defined( "IPSC" )) { ?>| <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;" target="_blank">BM: Hotspot</a><?php } else { ?>
         | <a href="http://srv05.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
           IPSC2-OE-DMO</a>
         | <a href="http://srv07.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
           IPSC2-OE-MASTER</a>
         | <a href="http://srv08.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
-          IPSC2-OE-MLINK</a>
+        IPSC2-OE-MLINK</a><?php } ?>
       </p>
       <div style="font-size: 8px; text-align: left; padding-left: 8px; ">
       </div>

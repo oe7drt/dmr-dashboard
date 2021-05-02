@@ -107,9 +107,13 @@ function linkCallsign( $callsign ) {
 
 function linkTG( $tg ) {
   if( !is_numeric( $tg ) && !defined("NOTGLINK")) {
-    $tmp = explode( " ", $tg );
-    $tg_id = trim( $tmp[1] );
-    $tg_new = "<a href=\"https://brandmeister.network/?page=lh&DestinationID=$tg_id\" target=\"_blank\">$tg</a>";
+    if( defined( "IPSC" )) {
+      return $tg;
+    } else {
+      $tmp = explode( " ", $tg );
+      $tg_id = trim( $tmp[1] );
+      $tg_new = "<a href=\"https://brandmeister.network/?page=lh&DestinationID=$tg_id\" target=\"_blank\">$tg</a>";
+    }
 
     return $tg_new;
   }
