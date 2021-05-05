@@ -77,7 +77,9 @@
         | <a href="http://srv07.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
           IPSC2-OE-MASTER</a>
         | <a href="http://srv08.oevsv.at/ipsc/" style="color: #ffffff;" target="_blank">
-        IPSC2-OE-MLINK</a><?php } ?>
+          IPSC2-OE-MLINK</a>
+        | <a href="http://89.185.97.34/bmaster+/" style="color: #ffffff;" target="_blank">
+          bMaster+</a><?php } ?>
       </p>
       <div style="font-size: 8px; text-align: left; padding-left: 8px; ">
       </div>
