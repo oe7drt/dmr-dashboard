@@ -68,7 +68,8 @@
         echo date("d.m.Y H:i:s T") . "<br />\n";
         echo "Uptime: " . getUptime();
       ?></div>
-      <a href="/" style="color: #ffffff;"><h1>DMR Hotspot Dashboard for OE7DRT</h1></a>
+      <?php if( !defined( "IPSC" )) { ?><a href="/" style="color: #ffffff;"><h1>DMR Hotspot Dashboard for OE7DRT</h1></a>
+      <?php } else { ?><a href="/" style="color: #ffffff;"><h1>DMR IPSC Hotspot Dashboard for OE7DRT</h1></a><?php } ?>
       <p style="padding-right: 5px; text-align: right; color: #ffffff;">
         <a href="/" style="color: #ffffff;">Dashboard</a>
         <?php if( !defined( "IPSC" )) { ?>| <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;" target="_blank">BM: Hotspot</a><?php } else { ?>
