@@ -34,7 +34,7 @@
   }
   
   // default values for files etc...
-  define("MMDVM_INI", "/etc/MMDVM-BM.ini");
+  define("MMDVM_INI", "/etc/MMDVM-IPSC.ini");
   define("YSFGW_INI", "/etc/YSFGateway.ini");
   define("APRS_INI", "/etc/APRSGateway.ini");
 
