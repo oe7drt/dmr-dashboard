@@ -20,10 +20,10 @@ function getUptime() {
       if( $hours >= 24 ) {
         $days = intval( $hours / 24 );
         $hours = $hours % 24;
-        $out = "$days days $hours hours $minutes minutes and $seconds seconds";
+        $out = "$days days $hours hrs $minutes mins and $seconds secs";
       } else {
         // no days, only hours minutes and seconds
-        $out = "$hours hours $minutes minutes and $seconds seconds";
+        $out = "$hours hrs $minutes mins and $seconds secs";
       }
     } else {
       // mintes < 60 only minuts, hours
