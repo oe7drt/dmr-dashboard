@@ -68,8 +68,8 @@
         echo date("d.m.Y H:i:s T") . "<br />\n";
         echo "Uptime: " . getUptime();
       ?></div>
-      <?php if( !defined( "IPSC" )) { ?><a href="/" style="color: #ffffff;"><h1>DMR Hotspot Dashboard for OE7DRT</h1></a>
-      <?php } else { ?><a href="/" style="color: #ffffff;"><h1>DMR IPSC Hotspot Dashboard for OE7DRT</h1></a><?php } ?>
+      <?php if( !defined( "IPSC" )) { ?><a href="/" style="color: #ffffff;"><h1>DMR BM Hotspot Dashboard</h1></a>
+      <?php } else { ?><a href="/" style="color: #ffffff;"><h1>DMR IPSC Hotspot Dashboard</h1></a><?php } ?>
       <p style="padding-right: 5px; text-align: right; color: #ffffff;">
         <a href="/" style="color: #ffffff;">Dashboard</a>
         <?php if( !defined( "IPSC" )) { ?>| <a href="https://brandmeister.network/?page=repeater&id=<?php echo $rpt_id; ?>" style="color: #ffffff;" target="_blank">BM: Hotspot</a><?php } else { ?>
@@ -94,7 +94,7 @@
           <th>Temp.</th>
         </tr>
         <tr>
-        <td><?php echo trim( `cat /sys/firmware/devicetree/base/model` ); ?> (<?php echo trim( `uname -sr` ); ?>)</td>
+        <td><?php echo trim( `cat /sys/firmware/devicetree/base/model | sed 's/Raspberry\ Pi/RPi/'` ); ?> (<?php echo trim( `uname -sr` ); ?>)</td>
           <td><?php echo round((int)`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq` / 1000) . " MHz"; ?></td>
           <td><?php echo str_replace(","," /",implode(", ", explode(" ", `cat /proc/loadavg`, -2))); ?></td>
           <td><?php echo round((int)`cat /sys/class/thermal/thermal_zone0/temp` / 1000) . "°C"; ?></td>

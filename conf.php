@@ -34,17 +34,17 @@
   }
   
   // default values for files etc...
-  define("MMDVM_INI", "/etc/MMDVM.ini");
+  define("MMDVM_INI", "/etc/MMDVM-BM.ini");
   define("YSFGW_INI", "/etc/YSFGateway.ini");
   define("APRS_INI", "/etc/APRSGateway.ini");
 
   define("LOGPATH", "/var/log/mmdvm");
-  define("MMDVM_PREFIX", "DMRHost");
+  define("MMDVM_PREFIX", "DMRHost-BM");
   define("YSFGW_PREFIX", "YSFGateway");
   define("APRSGW_PREFIX","APRSGateway");
 
   define("DMRID_DAT", "/home/pi/dmrid.dat");
 
   // if we use IPSC2, if we use brandmeister just comment this line out
-  define("IPSC", true);
+  //define("IPSC", true);
 ?>
